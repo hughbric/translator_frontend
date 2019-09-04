@@ -1,12 +1,19 @@
-import React, { Component } from 'react';
-import TerminologyItem from './TerminologyItem';
+import React from "react";
+import TerminologyItem from "./TerminologyItem";
+import Spinner from "./layout/Spinner";
 
-export class TerminologyList extends Component {
-  render() {
-    return this.props.translations.map((translation) => (
-      <TerminologyItem key={translation.id} translation={translation} delTerm={this.props.delTerm} />
+const TerminologyList = ({ translations, loading, delTerm }) => {
+  if (loading) {
+    return <Spinner />;
+  } else {
+    return translations.map(translation => (
+      <TerminologyItem
+        key={translation.id}
+        translation={translation}
+        delTerm={delTerm}
+      />
     ));
   }
-}
+};
 
 export default TerminologyList;

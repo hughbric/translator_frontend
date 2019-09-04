@@ -1,55 +1,77 @@
-import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom'
-import Header from './components/layout/Header';
-import AddTerm from './components/AddTerm';
-import About from './components/pages/About';
-import TerminologyList from './components/TerminologyList';
-import axios from 'axios';
+import React, { Component } from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import Header from "./components/layout/Header";
+import AddTerm from "./components/AddTerm";
+import About from "./components/pages/About";
+import TerminologyList from "./components/TerminologyList";
+import axios from "axios";
 
-import './App.css';
+import "./App.css";
 
 class App extends Component {
   state = {
-   translations: []
-  }
+    translations: [],
+    loading: false
+  };
 
-  componentDidMount() {
-    axios.get('https://trans-late.herokuapp.com/').then(res => this.setState({ translations: res.data.data }))
+  async componentDidMount() {
+    this.setState({ loading: true });
+
+    const res = await axios.get("https://trans-late.herokuapp.com/");
+
+    this.setState({ translations: res.data.data, loading: false });
   }
 
   // Add Term
-  addTerm = (term) => {
-    axios.post('https://trans-late.herokuapp.com/terms', {
-      term
-    }).then(res => this.setState({ translations: [...this.state.translations, res.data.data] }));
-  }
+  addTerm = term => {
+    axios
+      .post("https://trans-late.herokuapp.com/terms", {
+        term
+      })
+      .then(res =>
+        this.setState({
+          translations: [...this.state.translations, res.data.data]
+        })
+      );
+  };
 
   // Delete Term
-  delTerm = (id) => {
-    axios.delete(`https://trans-late.herokuapp.com/terms/${id}`)
-      .then(res => this.setState({ translations: [...this.state.translations.filter(term => term.id !== id)] }));
-  }
+  delTerm = id => {
+    axios.delete(`https://trans-late.herokuapp.com/terms/${id}`).then(res =>
+      this.setState({
+        translations: [
+          ...this.state.translations.filter(term => term.id !== id)
+        ]
+      })
+    );
+  };
 
   render() {
     return (
       <Router>
-        <div className="App">
+        <div className='App'>
           <Header />
-          <Route exact path="/" render={props => (
-            <React.Fragment>
-              <AddTerm addTerm={this.addTerm} />
+          <Route
+            exact
+            path='/'
+            render={props => (
+              <React.Fragment>
+                <AddTerm addTerm={this.addTerm} />
 
-              <div style={getStyle}>
-                <p style={{flex: '1'}}>Term</p>
-                <p style={{flex: '1.1'}}>Pig-Latin</p>
-              </div>  
+                <div style={getStyle}>
+                  <p style={{ flex: "1" }}>Term</p>
+                  <p style={{ flex: "1.1" }}>Pig-Latin</p>
+                </div>
 
-              <TerminologyList translations={this.state.translations} delTerm={this.delTerm} />
-            </React.Fragment>
-          )} />
-          <Route path="/about" render={props => (
-            <About />
-          )} />
+                <TerminologyList
+                  translations={this.state.translations}
+                  delTerm={this.delTerm}
+                  loading={this.loading}
+                />
+              </React.Fragment>
+            )}
+          />
+          <Route path='/about' render={props => <About />} />
         </div>
       </Router>
     );
@@ -57,9 +79,9 @@ class App extends Component {
 }
 
 const getStyle = {
-  display: 'flex',
-  fontSize: '30px',
-  fontWeight: 'bold',
-}
+  display: "flex",
+  fontSize: "30px",
+  fontWeight: "bold"
+};
 
 export default App;
