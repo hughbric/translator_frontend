@@ -23,16 +23,14 @@ class App extends Component {
   }
 
   // Add Term
-  addTerm = term => {
-    axios
-      .post("https://trans-late.herokuapp.com/terms", {
-        term
-      })
-      .then(res =>
-        this.setState({
-          translations: [...this.state.translations, res.data.data]
-        })
-      );
+  addTerm = async term => {
+    const res = await axios.post("https://trans-late.herokuapp.com/terms", {
+      term
+    });
+
+    this.setState({
+      translations: [...this.state.translations, res.data.data]
+    });
   };
 
   // Delete Term
@@ -65,8 +63,8 @@ class App extends Component {
 
                 <TerminologyList
                   translations={this.state.translations}
+                  loading={this.state.loading}
                   delTerm={this.delTerm}
-                  loading={this.loading}
                 />
               </React.Fragment>
             )}

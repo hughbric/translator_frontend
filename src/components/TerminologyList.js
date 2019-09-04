@@ -1,6 +1,7 @@
 import React from "react";
 import TerminologyItem from "./TerminologyItem";
 import Spinner from "./layout/Spinner";
+import PropTypes from "prop-types";
 
 const TerminologyList = ({ translations, loading, delTerm }) => {
   if (loading) {
@@ -14,6 +15,12 @@ const TerminologyList = ({ translations, loading, delTerm }) => {
       />
     ));
   }
+};
+
+TerminologyList.propTypes = {
+  translations: PropTypes.array.isRequired,
+  loading: PropTypes.bool.isRequired,
+  delTerm: PropTypes.func
 };
 
 export default TerminologyList;
