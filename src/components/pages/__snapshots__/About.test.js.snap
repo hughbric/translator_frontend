@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`About matches the snapshot 1`] = `
+exports[`<About /> matches the snapshot 1`] = `
 <div>
   <h1>
     About

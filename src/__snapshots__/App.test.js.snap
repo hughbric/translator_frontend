@@ -1,0 +1,108 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches the snapshot 1`] = `
+<div
+  className="App"
+>
+  <header
+    style={
+      Object {
+        "background": "#ADD8E6",
+        "color": "#fff",
+        "padding": "10px",
+        "textAlign": "center",
+      }
+    }
+  >
+    <h1>
+      Health & Safety
+    </h1>
+    <h2>
+      Translator
+    </h2>
+    <a
+      href="/"
+      onClick={[Function]}
+    >
+      Home
+    </a>
+     | 
+    <a
+      href="/about"
+      onClick={[Function]}
+    >
+      About
+    </a>
+  </header>
+  <form
+    onSubmit={[Function]}
+    style={
+      Object {
+        "display": "flex",
+      }
+    }
+  >
+    <input
+      name="term"
+      onChange={[Function]}
+      placeholder="Add Term"
+      style={
+        Object {
+          "flex": "10",
+        }
+      }
+      type="text"
+      value=""
+    />
+    <input
+      className="btn"
+      style={
+        Object {
+          "flex": "1",
+        }
+      }
+      type="submit"
+      value="Translate"
+    />
+  </form>
+  <div
+    style={
+      Object {
+        "display": "flex",
+        "fontSize": "30px",
+        "fontWeight": "bold",
+      }
+    }
+  >
+    <p
+      style={
+        Object {
+          "flex": "1",
+        }
+      }
+    >
+      Term
+    </p>
+    <p
+      style={
+        Object {
+          "flex": "1.1",
+        }
+      }
+    >
+      Pig-Latin
+    </p>
+  </div>
+  <img
+    alt="Loading..."
+    src="spinner.gif"
+    style={
+      Object {
+        "display": "block",
+        "margin": "auto",
+        "width": "200px",
+      }
+    }
+  />
+</div>
+`;
